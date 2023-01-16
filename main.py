@@ -30,6 +30,12 @@ ballUp=1
 ballRight=1
 ball = pygame.Rect(ballX,ballY,20,20)
 
+lscore = 0
+rscore = 0
+font = pygame.font.Font('freesansbold.ttf', 32)
+ltext = font.render(str(lscore),True,(255,255,255))
+rtext = font.render(str(rscore),True,(255,255,255))
+
 
 while gameloop:
     for event in pygame.event.get():
@@ -66,6 +72,7 @@ while gameloop:
         print("right win")
         ballX = 390
         ballY = 190
+        rscore = rscore + 1
         if ballRight == 1: ballRight = 0
         else: ballRight = 1
         ballVel = 1
@@ -74,6 +81,7 @@ while gameloop:
         print("left win")
         ballX = 390
         ballY = 190
+        lscore = lscore + 1
         if ballRight == 1: ballRight = 0
         else: ballRight = 1
         ballVel = 1
@@ -95,6 +103,11 @@ while gameloop:
     ball = pygame.Rect(ballX,ballY,20,20)
     lpadle = pygame.Rect(left_paddelX,left_paddleY,20,100)
     rpadle = pygame.Rect(right_paddleX,right_paddleY,20,100)
+    ltext = font.render(str(lscore),True,(255,255,255))
+    rtext = font.render(str(rscore),True,(255,255,255))
+    
+    screen.blit(ltext, (200,25))
+    screen.blit(rtext, (600,25))
     pygame.draw.rect(screen,(255,255,255),lpadle)
     pygame.draw.rect(screen,(255,255,255),rpadle)
     pygame.draw.rect(screen,(255,255,255),ball)
