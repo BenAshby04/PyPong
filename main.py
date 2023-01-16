@@ -8,6 +8,7 @@ while gameloop:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             gameloop = False
+            break
     
     #Main Game loop to draw everything
     
