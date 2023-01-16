@@ -1,8 +1,6 @@
 import pygame
 from sys import exit
 
-
-
 pygame.init()
 screen = pygame.display.set_mode((800,400))
 gameloop = True
@@ -16,7 +14,6 @@ left_paddleY = 10
 
 lpadle = pygame.Rect(left_paddelX,left_paddleY,20,100)
 
-
 right_paddle = pygame.Surface((20,100))
 right_paddle.fill(pygame.Color(255,255,255))
 right_paddleX= 770
@@ -28,7 +25,7 @@ rpadle = pygame.Rect(right_paddleX,right_paddleY,20,100)
 
 ballX = 390
 ballY = 190
-ballVel = 5
+ballVel = 1
 ballUp=1
 ballRight=1
 ball = pygame.Rect(ballX,ballY,20,20)
@@ -53,6 +50,46 @@ while gameloop:
     if keys[pygame.K_DOWN]:
         if right_paddleY < 300:
             right_paddleY = right_paddleY + 2 
+    if ball.colliderect(rpadle):
+        ballRight = 0
+        ballVel = ballVel * 1.3
+    if ball.colliderect(lpadle):
+        ballRight = 1
+        ballVel = ballVel * 1.3
+        
+    if ballY <=0:
+        ballUp =0
+    if ballY >=380:
+        ballUp =1
+    if ballX <=0:
+        #Right win
+        print("right win")
+        ballX = 390
+        ballY = 190
+        if ballRight == 1: ballRight = 0
+        else: ballRight = 1
+        ballVel = 1
+    if ballX >=780:
+        #Left Win
+        print("left win")
+        ballX = 390
+        ballY = 190
+        if ballRight == 1: ballRight = 0
+        else: ballRight = 1
+        ballVel = 1
+    if ballUp ==1 and ballRight == 1:
+        ballX = ballX + ballVel
+        ballY = ballY - ballVel
+    if ballUp ==1 and ballRight == 0:
+        ballX = ballX - ballVel
+        ballY = ballY - ballVel
+    if ballUp ==0 and ballRight == 1:
+        ballX = ballX + ballVel
+        ballY = ballY + ballVel
+    if ballUp ==0 and ballRight == 0:
+        ballX = ballX - ballVel
+        ballY = ballY + ballVel
+    
     
     # screen.blit(left_paddle,(left_paddelX,left_paddleY))
     ball = pygame.Rect(ballX,ballY,20,20)
@@ -67,4 +104,4 @@ while gameloop:
     
     
     pygame.display.flip()
-    clock.tick(120)
+    clock.tick(60)
