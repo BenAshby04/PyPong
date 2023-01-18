@@ -1,3 +1,4 @@
+
 # PyPong
 
 Just a pygame version of the game Pong that I developed while learning Pygame
@@ -13,6 +14,18 @@ Just a pygame version of the game Pong that I developed while learning Pygame
   python main.py
 ```
     
+## Controls
+
+Left paddle
+- 'W' move Up
+- 'S' move Down
+
+Right paddle
+- 'Up Arrow' move Up
+- 'Down Arrow' move Down
+
+Misc
+- 'R' Reset
 ## Authors
 
 - [@BenAshby04](https://www.github.com/benashby04)
