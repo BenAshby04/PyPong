@@ -25,7 +25,7 @@ rpadle = pygame.Rect(right_paddleX,right_paddleY,20,100)
 
 ballX = 390
 ballY = 190
-ballVel = 1
+ballVel = 1.2
 ballUp=1
 ballRight=1
 ball = pygame.Rect(ballX,ballY,20,20)
@@ -41,7 +41,16 @@ while gameloop:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-            exit()   
+            exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_r:
+                lscore = 0
+                rscore = 0
+                ballX = 390
+                ballY = 190
+                ballVel = 1.2
+                ballUp=1
+                ballRight = 1
     screen.fill(pygame.Color(0,0,0))
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w]:
@@ -75,7 +84,7 @@ while gameloop:
         rscore = rscore + 1
         if ballRight == 1: ballRight = 0
         else: ballRight = 1
-        ballVel = 1
+        ballVel = 1.2
     if ballX >=780:
         #Left Win
         print("left win")
